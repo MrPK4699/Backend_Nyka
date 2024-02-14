@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const {MongoUrl} = require('./config/config');
 const cors= require('cors');
 
-const userRoutes=require('./routes/userRoutes')
+const registerRoutes=require('./routes/registerRoutes')
+const loginRoutes=require('./routes/loginRoutes')
 const productsRoutes=require('./routes/productsRoutes')
 const errorHandlers=require('./utils/errorHandlers')
 
@@ -22,7 +23,8 @@ app.get('/', (req,res)=>{
     res.json({'msg':'All is Well' })
 })
 
-app.use('/api/user', userRoutes);
+app.use('/api/register', registerRoutes);
+app.use('/api/login', loginRoutes);
 app.use('/api/products', productsRoutes);
 
 app.use(errorHandlers);

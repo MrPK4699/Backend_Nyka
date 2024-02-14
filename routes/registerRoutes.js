@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const userController = require('../controllers/userController');
+const userController = require('../Controller/userController');
 
 // Multer configuration for avatar upload
 const storage = multer.diskStorage({
@@ -16,9 +16,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // User registration route
-router.post('/register', upload.single('avatar'), userController.register);
-
-// User login route
-router.post('/login', userController.login);
+router.post('/', upload.single('avatar'), userController.register);
 
 module.exports = router;

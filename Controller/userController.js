@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cloudinary = require('cloudinary').v2;
 const User = require('../models/User');
@@ -21,7 +21,7 @@ const uploadAvatar = async (file) => {
 exports.register = async (req, res) => {
   try {
     // Upload avatar
-    const avatarUrl = await uploadAvatar(req.file);
+    // const avatarUrl = await uploadAvatar(req.file);
 
     // Hash password
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
-      avatar: avatarUrl,
+      // avatar: avatarUrl,
     });
 
     await user.save();
@@ -40,7 +40,7 @@ exports.register = async (req, res) => {
     res.status(201).json({ message: 'User registered successfully', user });
   } catch (err) {
     console.error(err);
-    res.status(402).json({ message: 'Internal server error' });
+    res.status(402).json({ message: 'Internal server error', err });
   }
 };
 
@@ -66,6 +66,6 @@ exports.login = async (req, res) => {
     res.status(201).json({ message: 'Login successful', token });
   } catch (err) {
     console.error(err);
-    res.status(402).json({ message: 'Internal server error' });
+    res.status(402).json({ message: 'Internal server error',err });
   }
 };
