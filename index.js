@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const {MongoUrl} = require('./config/config');
 const cors= require('cors');
-
+// 
 const registerRoutes=require('./routes/registerRoutes')
 const loginRoutes=require('./routes/loginRoutes')
 const productsRoutes=require('./routes/productsRoutes')
